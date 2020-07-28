@@ -18,7 +18,7 @@ const server = http.createServer(function (req, res) {
 });
 
 // Declare variable to confirm server start
-const play = "Look! a wild server appeared on " + port;
+const play = "Look! a wild server appeared on port " + port;
 console.log(play);
 
 // Console log `greeting` variable
