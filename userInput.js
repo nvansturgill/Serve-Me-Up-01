@@ -18,22 +18,30 @@ const server = http.createServer(function (req, res) {
 });
 
 // Declare variable to confirm server start
-const play = "Look! a wild server appeared on port " + port;
-console.log(play);
+const ready = "Look! a wild server appeared on port " + port;
+console.log(ready);
 
 // Console log `greeting` variable
 console.log(greeting);
 
 // Create function to prompt user for userPassword
 function userQuestions() {
-  inquirer.prompt([
-    {
-      type: "password",
-      name: "userPassword",
-      message: "What's the secret word?",
-    },
-  ]);
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        name: "userPassword",
+        message: "What's the secret word?",
+      },
+    ])
+    // Write userPassword to userPassword.txt with npm File Systems
+    .then((answers) => {
+      fs.writeFile("userPassword.txt", answers.userPassword, function (err) {
+        // Validate by returning "Success!..."
+        console.log("Sucess! You guessed the secret word!");
+      });
+    });
 }
 
-// Call and `userQuestion` to console
-// userQuestions();
+// Run userQuestions
+userQuestions();
