@@ -1,10 +1,9 @@
-// Require Node.js file system module
+// Require Node.js file system and HTTP modules
 const fs = require("fs");
+const http = require("http");
 
-// Require Node.js `inquirer` npm dependency
+// Require Node.js `inquirer` npm dependency and `greeting.js` file
 const inquirer = require("inquirer");
-
-// Require `greeting.js` file
 const greeting = require("./greeting.js");
 
 // Console log `greeting` variable
