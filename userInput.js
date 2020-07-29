@@ -37,7 +37,7 @@ function userQuestions() {
     // Write userPassword to userPassword.txt with npm File Systems
     .then((answers) => {
       fs.writeFile("userPassword.txt", answers.userPassword, function (err) {
-        // Validate by returning "Success!..."
+        // Validate
         console.log("Sucess! You guessed the secret word!");
       });
     });
