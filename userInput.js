@@ -1,47 +1,49 @@
-// Require Node.js file system and HTTP modules
+// Requirements
 const fs = require("fs");
 const http = require("http");
-
-// Require Node.js `inquirer` npm dependency and `greeting.js` file
 const inquirer = require("inquirer");
 const greeting = require("./greeting.js");
+const readline = require("readline");
 
-// Declare host and port variables for server
-const hostname = "127.0.0.1";
-const port = "3000";
+// USED TO TEST ADDITIONAL LIPSUM STRINGS ONLY
+const play = "Lorem ipsum dolor sit amet, consectetur.";
+// END OF LIPSUM TEST
+
+// Console log `greeting`
+console.log(greeting);
+
+// Tell user you are going to create a server
+console.log(play);
 
 // Create server
-const server = http.createServer(function (req, res) {
-  // Declare statusCode 200: server without errors
-  res.statusCode = 200;
-  // res.setHeader("Content-type", "text/html");
-});
+const hostname = "127.0.0.1";
+const port = "3000";
+const server = http.createServer(function (req, res) {});
 
-// Declare variable to confirm server start
-const ready = "Look! a wild server appeared on port " + port;
-console.log(ready);
-
-// Console log `greeting` variable
-console.log(greeting);
+// Confirm server
+const serverReady =
+  "Look! a wild server appeared on local port " + port + "...";
+console.log(serverReady);
 
 // Create function to prompt user for userPassword
 function userQuestions() {
   inquirer
     .prompt([
       {
-        type: "input",
+        type: "password",
         name: "userPassword",
-        message: "What's the secret word?",
+        message:
+          "Choose a passphrase, any passphrase. Type it into the console then hit return.",
       },
     ])
-    // Write userPassword to userPassword.txt with npm File Systems
     .then((answers) => {
       fs.writeFile("userPassword.txt", answers.userPassword, function (err) {
-        // Validate
-        console.log("Sucess! You guessed the secret word!");
+        console.log(
+          'Woohoo! Your passphrase, "' +
+            answers.userPassword +
+            '" was sucessfully written to userPassword.txt'
+        );
       });
     });
 }
-
-// Run userQuestions
 userQuestions();
